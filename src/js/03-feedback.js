@@ -5,20 +5,22 @@ const form = document.querySelector(".feedback-form")
 const submitButton = document.querySelector("[type='submit']")
 const FEEDBACK_STORAGE = "feedback-form-state"
 
-form.addEventListener("input", throttle(() => {
-    const data = {
+form.addEventListener("input", throttle(onFormInput, 500))
+
+function onFormInput() {
+    const formInputData = {
         email: emailInput.value,
         message: messageInput.value
     }
 
-    localStorage.setItem(FEEDBACK_STORAGE, JSON.stringify(data))
-}), 500)
+    localStorage.setItem(FEEDBACK_STORAGE, JSON.stringify(formInputData))
+}
 
 if(localStorage.getItem(FEEDBACK_STORAGE)) {
     let parsedData = JSON.parse(localStorage.getItem(FEEDBACK_STORAGE))
 
-    emailInput.value = parsedData.email
-    messageInput.value = parsedData.message
+    emailInput.value = parsedData.email;
+    messageInput.value = parsedData.message;
 }
 
 form.addEventListener("submit", (event) => {
