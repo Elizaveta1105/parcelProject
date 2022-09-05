@@ -2,7 +2,6 @@ import { throttle } from 'lodash'
 const emailInput = document.querySelector("[name='email']")
 const messageInput = document.querySelector("[name='message']")
 const form = document.querySelector(".feedback-form")
-const submitButton = document.querySelector("[type='submit']")
 const FEEDBACK_STORAGE = "feedback-form-state"
 
 form.addEventListener("input", throttle(onFormInput, 500))
